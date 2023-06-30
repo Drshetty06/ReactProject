@@ -1,0 +1,31 @@
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px; 
+}
+
+.accordion-icon {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .accordion-header {
+    flex-wrap: wrap;
+  }
+  
+  .accordion-header .accordion-title {
+    flex-basis: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .accordion-header .accordion-icon {
+    flex-basis: 100%;
+  }
+}
+
+
+.ant-collapse {
+  width: 100%;
+}

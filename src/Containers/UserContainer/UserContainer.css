@@ -1,0 +1,31 @@
+.users-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 20px; 
+  }
+  
+  .users-container .accordion-item {
+    width: 20pc; 
+    
+  }
+  
+  .action-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .transparent-button {
+    background: none;
+    border: none;
+    color: maroon;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .button-separator {
+    margin: 0 5px;
+  }
+  

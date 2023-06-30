@@ -1,0 +1,30 @@
+.dashboard {
+    height: 100px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #001529;
+    padding: 0 24px;
+  }
+  
+  .header-title {
+    color: #fff !important;
+    margin: 0;
+  }
+  
+  .logout-info {
+    color: #fff;
+    padding: 0px;
+    height: 40px;
+    font-size: larger;
+    margin-bottom: -15px; /* Adjust the margin as needed */
+  }
+  
+  .last-login {
+    color: #fff;
+    font-size: small;
+  }
+  

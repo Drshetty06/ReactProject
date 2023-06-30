@@ -1,0 +1,37 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+}
+
+.side-drawer {
+  width: 250px;
+  background-color: rgb(207, 201, 201);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px;
+  margin-top: 50px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  z-index: 1;
+}
+
+.side-drawer {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+}

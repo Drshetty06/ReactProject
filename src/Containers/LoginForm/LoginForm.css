@@ -1,0 +1,68 @@
+.registration-form {
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 10pc;
+    padding: 20px 20px 0px 20px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    text-align: center;
+  }
+  
+  .label{
+    padding: 0px;
+    margin: 0px;
+    font-weight: 500;
+    display: flex;
+  
+    
+  }
+  .center {
+    text-align: center;
+  }
+  
+  .ant-form-item-explain-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: flex !important;
+  }
+  
+  h2.center {
+    color: #921f68; /* Purple-pink color */
+  }
+  
+  h2.center::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #921f68; /* Purple-pink color */
+    margin: 10px auto; /* Add some spacing below the line */
+  }
+  
+  .form-item {
+    margin-bottom: 15px;
+  }
+  
+  .form-item label {
+    display: block;
+  }
+  
+  .button-container {
+    background-color: #dbd9db;
+    justify-content: center;
+    border-radius: 2px;
+  }
+  
+  .button-container .ant-btn {
+    width: 100% !important;
+  }
+  
+  
+  @media (max-width: 480px) {
+    .registration-form {
+      width: 90%;
+      padding: 10px;
+    }
+  }
+  

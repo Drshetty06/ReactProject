@@ -1,0 +1,34 @@
+[
+    {
+      "key": "1",
+      "compartmentName": "User Details"
+    },
+    {
+      "key": "2",
+      "compartmentName": "Account Details"
+    },
+    {
+      "key": "3",
+      "compartmentName": "Onboarding"
+    },
+    {
+      "key": "4",
+      "compartmentName": "System Details"
+    },
+    {
+      "key": "5",
+      "compartmentName": "Batch Process",
+      "path": "/BatchProcess"
+      
+    },
+    {
+      "key": "6",
+      "compartmentName": "Reports"
+    },
+    {
+      "key": "7",
+      "compartmentName": "Users",
+      "path": "/Users"
+    }
+  ]
+  
