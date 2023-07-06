@@ -7,7 +7,6 @@ const routes = [
     },
     {
       title: 'Reports',
-      path: '/CreateRole',
     },
    
   ];

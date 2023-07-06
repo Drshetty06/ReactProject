@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
-import { Button, Card } from 'antd';
+import { Button, Tree } from 'antd';
 import './CreateRole.css';
 
-import { fetchMasterResources } from '../../Redux/Actions/Role';
+import { fetchMasterResources, updateSelectedResources, createRole } from '../../Redux/Actions/Role';
 
 const validate = (values) => {
     const errors = {};
@@ -20,7 +20,8 @@ const validate = (values) => {
 
 const CreateRole = () => {
     const dispatch = useDispatch();
-    const resources = useSelector((state) => state.resources);
+    const resources = useSelector((state) => state.role.resources);
+    const selectedResources = useSelector((state) => state.role.selectedResources);
 
     useEffect(() => {
         dispatch(fetchMasterResources());
@@ -28,12 +29,33 @@ const CreateRole = () => {
 
     const onSubmit = async (values) => {
         try {
-            alert('Role created successfully!');
+          const roleData = {
+            ...values,
+            selectedResources: selectedResources, 
+          };
+      
+          await dispatch(createRole(roleData));
+          alert('Role created successfully!');
+          console.log('Submitted');
         } catch (error) {
-            console.error('Error creating role:', error);
-            alert('Role creation failed. Please try again.');
+          console.error('Error creating role:', error);
+          alert('Role creation failed. Please try again.');
         }
+      };
+      
+    const renderTreeNodes = (data, identifier = '') => {
+        if (!data || data.length === 0) {
+            return <Tree />;
+        }
+
+        return data.map((node, index) => (
+            <Tree.TreeNode key={`node-${identifier}-${node.id}-${index}`} title={node.title}>
+                {renderTreeNodes(node.children, `${identifier}-${node.id}-${index}`)}
+            </Tree.TreeNode>
+        ));
     };
+
+
 
     return (
         <div className="create-role-container">
@@ -45,6 +67,7 @@ const CreateRole = () => {
                     validate={validate}
                     render={({ handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
+
                             <div className="form-group">
                                 <label className="label">Role Name*</label>
                                 <Field
@@ -56,14 +79,11 @@ const CreateRole = () => {
                                 />
                                 <div className="error-message">
                                     <Field name="roleName">
-                                        {({ meta }) =>
-                                            meta.error && meta.touched && (
-                                                <span className="error">{meta.error}</span>
-                                            )
-                                        }
+                                        {({ meta }) => meta.error && meta.touched && <span className="error">{meta.error}</span>}
                                     </Field>
                                 </div>
                             </div>
+
 
                             <div className="form-group">
                                 <label className="label">Permission List*</label>
@@ -84,35 +104,31 @@ const CreateRole = () => {
                                 </div>
                             </div>
 
-                            <Card className="card">
-                                {resources ? (
-                                    <ul className="selected-resources-list">
-                                        {resources.map((resource) => (
-                                            <li key={resource.id}>
-                                                <label className="resource-label">
-                                                    <Field
-                                                        name={`selectedResources.${resource.id}`}
-                                                        component="input"
-                                                        type="checkbox"
-                                                    />{' '}
-                                                    {resource.name}
-                                                </label>
-                                            </li>
-                                        ))}
-                                    </ul>
+
+                            <div>
+                                {resources.loading ? (
+                                    <div>Loading resources...</div>
                                 ) : (
-                                    <p>Loading resources...</p>
+                                    <Tree
+                                        checkable
+                                        defaultExpandAll
+                                        checkedKeys={selectedResources}
+                                        onCheck={(checkedKeys) => dispatch(updateSelectedResources(checkedKeys))}
+                                    >
+                                        {renderTreeNodes(resources)}
+                                    </Tree>
+
                                 )}
-                            </Card>
+                            </div>
 
-
+                            {/* Buttons */}
                             <div className="button-group">
                                 <Button type="button" className="cancel-button">
                                     Cancel
                                 </Button>
-                                <Button type="submit" className="save-button">
+                                <button type="button" className="save-button" onClick={handleSubmit}>
                                     Save
-                                </Button>
+                                </button>
                             </div>
                         </form>
                     )}
